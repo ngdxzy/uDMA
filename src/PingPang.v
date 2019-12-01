@@ -208,6 +208,7 @@ module Pingpang#(
 				Data_en_2 <= 1'b0;
 				INIT_AXI_TXN_1 <= 1'b0;
 				INIT_AXI_TXN_2 <= 1'b0;			
+				Write_done <= 1'b0;
 			end
 
 			PRE_S : begin
@@ -216,6 +217,7 @@ module Pingpang#(
 				Data_en_2 <= 1'b0;
 				INIT_AXI_TXN_1 <= 1'b1;
 				INIT_AXI_TXN_2 <= 1'b0;	
+				Write_done <= 1'b0;
 			end
 
 			Write1 : begin
@@ -223,18 +225,21 @@ module Pingpang#(
 				Data_en_2 <= 1'b0;
 				INIT_AXI_TXN_1 <= 1'b0;
 				INIT_AXI_TXN_2 <= ((BIAS_ADDR_2 + ADDRESS_CHANGE) < End_ADDR);
+				Write_done <= 1'b0;
 			end
 
 			Write2 : begin
 				Data_en_1 <= 1'b0;
 				Data_en_2 <= data_en;
 				INIT_AXI_TXN_1 <= ((BIAS_ADDR_1 + ADDRESS_CHANGE) < End_ADDR);
+				Write_done <= 1'b0;
 				INIT_AXI_TXN_2 <= 1'b0;
 			end
 
 			Wait_Pre1 : begin
 				Data_en_1 <= data_en;
 				Data_en_2 <= 1'b0;
+				Write_done <= 1'b0;
 				INIT_AXI_TXN_1 <= 1'b0;
 				INIT_AXI_TXN_2 <= 1'b0;
 			end
@@ -243,12 +248,14 @@ module Pingpang#(
 				Data_en_2 <= data_en;
 				Data_en_1 <= 1'b0;
 				INIT_AXI_TXN_1 <= 1'b0;
+				Write_done <= 1'b0;
 				INIT_AXI_TXN_2 <= 1'b0;
 			end
 			Wait : begin
 				Data_en_1 <= 1'b0;
 				Data_en_2 <= 1'b0;
 				INIT_AXI_TXN_1 <= 1'b0;
+				Write_done <= 1'b0;
 				INIT_AXI_TXN_2 <= 1'b0;
 				Write_done <= 1'b1;
 			end
@@ -267,6 +274,7 @@ module Pingpang#(
 				Data_en_1 <= 1'b0;
 				Data_en_2 <= 1'b0;
 				INIT_AXI_TXN_1 <= 1'b0;
+				Write_done <= 1'b0;
 				INIT_AXI_TXN_2 <= 1'b0;	
 			end
 
